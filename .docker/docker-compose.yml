@@ -1,0 +1,46 @@
+services:
+    # PHP service
+    app:
+        #image: <add your docker uploaded image here>
+        build: ../${APP_DIR_NAME}/
+        container_name: ${APP_CONTAINER_NAME}
+        working_dir: /var/www/
+        volumes:
+            - ../${APP_DIR_NAME}:/var/www
+            - ../${APP_DIR_NAME}/conf/php/php.ini:/usr/local/etc/php/php.ini
+        networks:
+            - php-app-network
+
+    # MySQL database service
+    db:
+        image: mysql:latest
+        container_name: ${DB_CONTAINER_NAME}
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        volumes:
+            - ../${APP_DIR_NAME}:/var/www
+        env_file:
+            - .env
+        networks:
+            - php-app-network
+
+    # Nginx service
+    nginx:
+        image: nginx:alpine
+        container_name: ${NGINX_CONTAINER_NAME}
+        ports:
+            - 80:80
+        volumes:
+            - ../${APP_DIR_NAME}:/var/www
+            - ../${APP_DIR_NAME}/conf/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - php-app-network
+            
+networks:
+    php-app-network:
+        driver: bridge
