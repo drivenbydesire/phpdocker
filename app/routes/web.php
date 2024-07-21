@@ -16,4 +16,8 @@ Route::get('users/', function () {
 Route::get('login/', function (Request $request) {
     return 'log-in web to get';
 });
+
+Route::get('react/', function () {
+    return view('react');
+});
 ?>
