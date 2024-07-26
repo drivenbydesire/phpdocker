@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\BeforeMiddleware;
+# API Routes
 
 Route::get('/', function (Request $request) {
     return 'log-in api to get';
@@ -17,4 +18,4 @@ Route::get('login/', function (Request $request) {
 })->name('login')->middleware([BeforeMiddleware::class]);
 
 # Default: Register, Login, Logout, Forgot
-# Use private apis for OTP, Email, SMS, Two-Factor, 
+# Use private apis for OTP, Email, SMS, Two-Factor,

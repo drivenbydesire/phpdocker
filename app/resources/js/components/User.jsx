@@ -9,6 +9,10 @@ function User() {
                     <div className="card text-center">
                         <div className="card-header"><h2>React Component in Laravel</h2></div>
                         <div className="card-body">Thanks guys! Integrating react in Laravel is hard!</div>
+                        <div className="card-footer">
+                            <button>Click Me</button>
+                            <span>Click Count: </span>
+                        </div>
                     </div>
                 </div>
             </div>
