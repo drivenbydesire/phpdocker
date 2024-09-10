@@ -6,7 +6,7 @@ use App\Http\Middleware\BeforeMiddleware;
 use App\Http\Middleware\AfterMiddleware;
 
 Route::get('/', function () {
-    return view('login');
+    return view('modernlogin');
 })->middleware([BeforeMiddleware::class, AfterMiddleware::class]);
 
 Route::get('users/', function () {
@@ -43,4 +43,5 @@ Route::get('youtubelogin/', function () { return view('youtubelogin'); });
  * misc/termsandconditions
  *
  */
+Route::get('dashboard/', function () { return view('moderndashboard'); });
 ?>
